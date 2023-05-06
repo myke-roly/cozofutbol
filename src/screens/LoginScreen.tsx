@@ -1,8 +1,10 @@
-import React, { FC } from 'react'
+import React, { FC, useState } from 'react'
 import {
+  ActivityIndicator,
   Button,
   Image,
   KeyboardAvoidingView,
+  Modal,
   Platform,
   ScrollView,
   StyleSheet,
@@ -14,9 +16,28 @@ import { RootStackParamList } from '../navigation/MainStack'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import Text from '../components/common/Text'
 
+const LoadingScreen = ({ isLoading }: { isLoading: boolean }) => {
+  return (
+    <Modal transparent={true} visible={isLoading}>
+      <View
+        style={{
+          flex: 1,
+          justifyContent: 'center',
+          alignItems: 'center',
+          backgroundColor: '#26262666',
+        }}>
+        <ActivityIndicator size="large" color="#FFFFFF" />
+      </View>
+    </Modal>
+  )
+}
+
 type LoginScreenProps = NativeStackScreenProps<RootStackParamList, Screen.LOGIN>
 
 const LoginScreen = ({ navigation }: LoginScreenProps) => {
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+
   return (
     <KeyboardAvoidingView
       style={styles.container}
@@ -41,25 +62,28 @@ const LoginScreen = ({ navigation }: LoginScreenProps) => {
             bienvenidos!.
           </Text>
           <View style={{ flex: 1 }} />
+          <Text>{email}</Text>
+          <Text>{password}</Text>
           <TextField
-            value=""
+            value={email}
             type="email-address"
             placeholder="Ingresa tu email"
             label="Email"
-            onChange={() => {}}
+            onChange={text => setEmail(text)}
           />
           <TextField
-            value=""
+            value={password}
             placeholder="Ingresa un contraseña"
             label="Contraseña"
-            onChange={() => {}}
+            onChange={text => setPassword(text)}
           />
           <Button title="Iniciar Sesión" onPress={() => {}} />
           <Button
-            title="Crear cuenta"
+            title="Ya tengo una cuenta!"
             onPress={() => navigation.navigate(Screen.REGISTER)}
           />
         </ScrollView>
+        <LoadingScreen isLoading={false} />
       </View>
     </KeyboardAvoidingView>
   )

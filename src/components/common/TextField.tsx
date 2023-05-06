@@ -4,7 +4,6 @@ import {
   StyleSheet,
   Text,
   TextInput,
-  TextInputProps,
   View,
 } from 'react-native'
 
@@ -14,7 +13,7 @@ type TextFieldProps = {
   placeholder: string
   label: string
   type?: KeyboardTypeOptions
-} & TextInputProps
+}
 
 const TextField = ({
   placeholder,
@@ -29,11 +28,12 @@ const TextField = ({
       <Text>{label}</Text>
       <TextInput
         style={styles.input}
-        {...props}
         placeholder={placeholder}
         keyboardType={type}
         value={value}
         onChangeText={onChange}
+        autoCapitalize="none"
+        {...props}
       />
     </View>
   )
