@@ -1,26 +1,22 @@
-import React, { useEffect } from 'react'
+import React, { FC, useEffect } from 'react'
 import { ActivityIndicator, StyleSheet, Text, View } from 'react-native'
 import { Screen } from '../navigation/enum/screen'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import { RootStackParamList } from '../navigation/MainStack'
 
-type SplashProps = NativeStackScreenProps<RootStackParamList, 'SPLASH'>
+type SplashProps = NativeStackScreenProps<RootStackParamList, Screen.SPLASH>
 
-const Splash = ({ navigation }: SplashProps) => {
+const Splash: FC<SplashProps> = ({ navigation }) => {
   const isAuth = false
 
   useEffect(() => {
-    const redirect = () => {
-      setTimeout(() => {
-        if (isAuth) {
-          navigation.navigate(Screen.LOGIN)
-        } else {
-          navigation.navigate(Screen.REGISTER)
-        }
-      }, 2000)
-    }
-
-    return () => redirect()
+    setTimeout(() => {
+      if (isAuth) {
+        navigation.replace(Screen.LOGIN)
+      } else {
+        navigation.replace(Screen.REGISTER)
+      }
+    }, 2000)
   }, [])
 
   return (

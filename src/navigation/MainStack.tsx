@@ -13,9 +13,22 @@ const RootStack = createStackNavigator<RootStackParamList>()
 
 const MainStack = () => {
   return (
-    <RootStack.Navigator>
-      <RootStack.Screen name={Screen.LOGIN} component={LoginScreen} />
-      <RootStack.Screen name={Screen.REGISTER} component={RegisterScreen} />
+    <RootStack.Navigator initialRouteName={Screen.SPLASH}>
+      <RootStack.Screen
+        name={Screen.SPLASH}
+        component={Splash}
+        options={{ headerShown: false }}
+      />
+      <RootStack.Screen
+        options={{ headerShown: false }}
+        name={Screen.LOGIN}
+        component={LoginScreen}
+      />
+      <RootStack.Screen
+        options={{ headerShown: false }}
+        name={Screen.REGISTER}
+        component={RegisterScreen}
+      />
     </RootStack.Navigator>
   )
 }
