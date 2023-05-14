@@ -1,29 +1,32 @@
-import React, { FC, useEffect } from 'react'
-import { ActivityIndicator, StyleSheet, Text, View } from 'react-native'
-import { Screen } from '../navigation/enum/screen'
-import { NativeStackScreenProps } from '@react-navigation/native-stack'
-import { RootStackParamList } from '../navigation/MainStack'
+import React, { FC, useEffect, useState } from 'react'
+import { ActivityIndicator, StyleSheet, View } from 'react-native'
+import { Text } from '../components/common'
+import { NavigationContainer } from '@react-navigation/native'
+import { AuthStack, MainTabs } from '../navigation'
 
-type SplashProps = NativeStackScreenProps<RootStackParamList, Screen.SPLASH>
+interface SplashProps {
+  isAuth: boolean
+}
 
-const Splash: FC<SplashProps> = ({ navigation }) => {
-  const isAuth = false
+const Splash = ({ isAuth }: SplashProps) => {
+  const [isLoading, setLoading] = useState(true)
 
   useEffect(() => {
-    setTimeout(() => {
-      if (isAuth) {
-        navigation.replace(Screen.LOGIN)
-      } else {
-        navigation.replace(Screen.REGISTER)
-      }
-    }, 2000)
-  }, [])
+    setTimeout(() => setLoading(false), 2000)
+  })
 
-  return (
+  if (isLoading)
     <View style={styles.container}>
-      <Text>Splash</Text>
+      <Text level="5" strong centered>
+        COZO FUTBOL
+      </Text>
       <ActivityIndicator />
     </View>
+
+  return (
+    <NavigationContainer onReady={() => console.log('is on ready')}>
+      {!isAuth ? <MainTabs /> : <AuthStack />}
+    </NavigationContainer>
   )
 }
 

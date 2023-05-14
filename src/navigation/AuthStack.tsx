@@ -11,7 +11,7 @@ export type RootStackParamList = {
 
 const RootStack = createStackNavigator<RootStackParamList>()
 
-const MainStack = () => {
+const AuthStack = () => {
   return (
     <RootStack.Navigator initialRouteName={Screen.SPLASH}>
       <RootStack.Screen
@@ -33,4 +33,4 @@ const MainStack = () => {
   )
 }
 
-export default MainStack
+export default AuthStack

@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react'
+import React, { useState } from 'react'
 import {
   ActivityIndicator,
   Button,
@@ -10,11 +10,15 @@ import {
   StyleSheet,
   View,
 } from 'react-native'
-import { TextField } from '../components/common'
+import { TextField, Text } from '../components/common'
 import { Screen } from '../navigation/enum/screen'
-import { RootStackParamList } from '../navigation/MainStack'
+import { RootStackParamList } from '../navigation/AuthStack'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
-import Text from '../components/common/Text'
+import {
+  StorageItemType,
+  getStorageItem,
+  setStorageItem,
+} from '../helpers/storage'
 
 const LoadingScreen = ({ isLoading }: { isLoading: boolean }) => {
   return (
@@ -37,6 +41,10 @@ type LoginScreenProps = NativeStackScreenProps<RootStackParamList, Screen.LOGIN>
 const LoginScreen = ({ navigation }: LoginScreenProps) => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+
+  function handleLogin(): void {
+    setStorageItem(StorageItemType.TOKEN, { email, password })
+  }
 
   return (
     <KeyboardAvoidingView
@@ -77,7 +85,7 @@ const LoginScreen = ({ navigation }: LoginScreenProps) => {
             label="Contraseña"
             onChange={text => setPassword(text)}
           />
-          <Button title="Iniciar Sesión" onPress={() => {}} />
+          <Button title="Iniciar Sesión" onPress={handleLogin} />
           <Button
             title="Ya tengo una cuenta!"
             onPress={() => navigation.navigate(Screen.REGISTER)}

@@ -8,11 +8,10 @@ import {
   StyleSheet,
   View,
 } from 'react-native'
-import { TextField } from '../components/common'
+import { TextField, Text } from '../components/common'
 import { Screen } from '../navigation/enum/screen'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
-import { RootStackParamList } from '../navigation/MainStack'
-import Text from '../components/common/Text'
+import { RootStackParamList } from '../navigation/AuthStack'
 
 type RegisterScreenProps = NativeStackScreenProps<
   RootStackParamList,
