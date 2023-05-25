@@ -1,19 +1,19 @@
 import React, { FC, useEffect, useState } from 'react'
 import { ActivityIndicator, StyleSheet, View } from 'react-native'
 import { Text } from '../components/common'
-import { NavigationContainer } from '@react-navigation/native'
+import { NavigationContainer, useNavigation } from '@react-navigation/native'
 import { AuthStack, MainTabs } from '../navigation'
 
 interface SplashProps {
   isAuth: boolean
 }
 
-const Splash = ({ isAuth }: SplashProps) => {
+const Splash: FC<SplashProps> = ({ isAuth }) => {
   const [isLoading, setLoading] = useState(true)
 
   useEffect(() => {
     setTimeout(() => setLoading(false), 2000)
-  })
+  }, [])
 
   if (isLoading)
     <View style={styles.container}>
@@ -24,7 +24,8 @@ const Splash = ({ isAuth }: SplashProps) => {
     </View>
 
   return (
-    <NavigationContainer onReady={() => console.log('is on ready')}>
+    <NavigationContainer
+      onReady={() => console.log('Navigation container is ready!!')}>
       {!isAuth ? <MainTabs /> : <AuthStack />}
     </NavigationContainer>
   )

@@ -18,7 +18,7 @@ import {
   StorageItemType,
   getStorageItem,
   setStorageItem,
-} from '../helpers/storage'
+} from '../storage/storage'
 
 const LoadingScreen = ({ isLoading }: { isLoading: boolean }) => {
   return (

@@ -1,8 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage'
-
-export enum StorageItemType {
-  TOKEN = 'TOKEN',
-}
+import { StorageItemType } from './enum'
+import { useMutation } from '@tanstack/react-query'
 
 export const setStorageItem = async (
   storageItem: StorageItemType,
