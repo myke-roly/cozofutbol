@@ -4,25 +4,26 @@ import { Screen } from './enum/screen'
 import { createStackNavigator } from '@react-navigation/stack'
 
 export type RootStackParamList = {
-  SPLASH: undefined
-  LOGIN: undefined
+  LOGIN: {
+    onLogin: () => void
+    other: string
+  }
   REGISTER: undefined
+  HOME: {
+    onLogout: () => void
+  }
 }
 
 const RootStack = createStackNavigator<RootStackParamList>()
 
-const AuthStack = () => {
+const AuthStack = ({ onLogin }: { onLogin: () => void }) => {
   return (
-    <RootStack.Navigator initialRouteName={Screen.SPLASH}>
-      <RootStack.Screen
-        name={Screen.SPLASH}
-        component={Splash}
-        options={{ headerShown: false }}
-      />
+    <RootStack.Navigator>
       <RootStack.Screen
         options={{ headerShown: false }}
         name={Screen.LOGIN}
         component={LoginScreen}
+        initialParams={{ onLogin, other: 'meeee' }}
       />
       <RootStack.Screen
         options={{ headerShown: false }}

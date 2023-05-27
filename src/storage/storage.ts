@@ -4,22 +4,24 @@ import { useMutation } from '@tanstack/react-query'
 
 export const setStorageItem = async (
   storageItem: StorageItemType,
-  value: any,
+  value: string,
 ) => {
   try {
-    await AsyncStorage.setItem(storageItem, JSON.stringify(value))
+    return await AsyncStorage.setItem(storageItem, JSON.stringify(value))
   } catch (error) {
     console.error(error)
   }
 }
 
-export const getStorageItem = async (storageItem: StorageItemType) => {
+export const getStorageItem = async (
+  storageItem: StorageItemType,
+): Promise<string | null> => {
   try {
     const data = await AsyncStorage.getItem(storageItem)
-    console.log(data)
-    return !!data ? JSON.parse(data) : null
+    return !!data ? data : null
   } catch (error) {
     console.error(error)
+    return null
   }
 }
 

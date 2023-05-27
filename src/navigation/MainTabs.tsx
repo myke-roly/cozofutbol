@@ -1,16 +1,32 @@
-import * as React from 'react'
-import { Text, View } from 'react-native'
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+import React from 'react'
+import { Button, Text, View } from 'react-native'
+import {
+  BottomTabScreenProps,
+  createBottomTabNavigator,
+} from '@react-navigation/bottom-tabs'
 
-const HomeScreen = () => {
+export type MainTabParamList = {
+  HOME: {
+    onLogout: () => void
+  }
+  SETTINGS: undefined
+}
+
+type HomeScreenProps = BottomTabScreenProps<MainTabParamList, 'HOME'>
+
+const HomeScreen = ({ route }: HomeScreenProps) => {
+  const { onLogout } = route.params
+
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
       <Text>Home!</Text>
+      <Button title="Cerrar sesión" onPress={onLogout} />
     </View>
   )
 }
 
-const SettingsScreen = () => {
+type SettingsScreenProps = BottomTabScreenProps<MainTabParamList, 'SETTINGS'>
+const SettingsScreen = ({}: SettingsScreenProps) => {
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
       <Text>Settings!</Text>
@@ -18,13 +34,17 @@ const SettingsScreen = () => {
   )
 }
 
-const Tab = createBottomTabNavigator()
+const Tab = createBottomTabNavigator<MainTabParamList>()
 
-const MainTabs = () => {
+const MainTabs = ({ onLogout }: { onLogout: () => void }) => {
   return (
-    <Tab.Navigator initialRouteName={'Home'}>
-      <Tab.Screen name="Home" component={HomeScreen} />
-      <Tab.Screen name="Settings" component={SettingsScreen} />
+    <Tab.Navigator initialRouteName={'HOME'}>
+      <Tab.Screen
+        name="HOME"
+        initialParams={{ onLogout }}
+        component={HomeScreen}
+      />
+      <Tab.Screen name="SETTINGS" component={SettingsScreen} />
     </Tab.Navigator>
   )
 }
