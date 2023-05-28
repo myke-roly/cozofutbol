@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "212820662746",
+    "project_id": "cozo-futbol",
+    "storage_bucket": "cozo-futbol.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:212820662746:android:5764b88fcc46b6880bc8e3",
+        "android_client_info": {
+          "package_name": "com.cozofutbol"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA5wFjKE0evWp2Bm2uPPnf4lx2ZkpuaZ8Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

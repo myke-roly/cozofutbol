@@ -1,0 +1,5 @@
+<resources>
+    <color name="background">#FFFFFF</color>
+    <color name="textColor">#000000</color>
+    <color name="notification_background">#FF964F</color>
+</resources>
