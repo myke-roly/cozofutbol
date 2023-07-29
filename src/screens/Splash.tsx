@@ -1,47 +1,33 @@
 import React, { useEffect, useState } from 'react'
 import { ActivityIndicator, StyleSheet, View } from 'react-native'
 import { Text } from '../components/common'
-import { NavigationContainer } from '@react-navigation/native'
+import { NavigationContainer, useTheme } from '@react-navigation/native'
 import { AuthStack, MainTabs } from '../navigation'
-import {
-  getStorageItem,
-  removeStorageItem,
-  setStorageItem,
-} from '../storage/storage'
-import { StorageItemType } from '../storage/enum'
+import firebase from '../helpers/firebase'
 
 const Splash = () => {
   const [isLoading, setLoading] = useState(true)
   const [token, setToken] = useState<string | null>(null)
 
   useEffect(() => {
-    const isLoggedIn = async () => {
-      setLoading(true)
-      try {
-        const data = await getStorageItem(StorageItemType.TOKEN)
-        setToken(data)
-        console.log(data)
-        setLoading(false)
-      } catch (err) {
-        setLoading(false)
-        console.error(err)
-      }
+    if (firebase.isLoggedIn) {
+      setToken('firebase token')
     }
 
     setTimeout(() => {
-      isLoggedIn()
+      setLoading(false)
     }, 1000)
   }, [])
 
-  async function handleLogin() {
-    await setStorageItem(StorageItemType.TOKEN, 'token jwt')
-    setToken('token jwt')
+  async function handleLogout() {
+    try {
+      await firebase.logout()
+    } catch (error) {
+      console.error(error)
+    }
   }
 
-  async function handleLogout() {
-    await removeStorageItem(StorageItemType.TOKEN)
-    setToken(null)
-  }
+  const theme = useTheme()
 
   if (isLoading) {
     return (
@@ -56,14 +42,9 @@ const Splash = () => {
 
   return (
     <NavigationContainer
-      onReady={() => {
-        console.log('app is ready')
-      }}>
-      {!!token ? (
-        <MainTabs onLogout={handleLogout} />
-      ) : (
-        <AuthStack onLogin={handleLogin} />
-      )}
+      theme={theme}
+      onReady={() => console.log('app is ready')}>
+      {token ? <MainTabs onLogout={handleLogout} /> : <AuthStack />}
     </NavigationContainer>
   )
 }

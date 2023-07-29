@@ -1,9 +1,10 @@
 import React from 'react'
-import { Button, Text, View } from 'react-native'
+import { Button, View } from 'react-native'
 import {
   BottomTabScreenProps,
   createBottomTabNavigator,
 } from '@react-navigation/bottom-tabs'
+import { Text } from '../components/common'
 
 export type MainTabParamList = {
   HOME: {

@@ -1,13 +1,10 @@
 import React from 'react'
-import { LoginScreen, RegisterScreen, Splash } from '../screens'
+import { LoginScreen, RegisterScreen } from '../screens'
 import { Screen } from './enum/screen'
 import { createStackNavigator } from '@react-navigation/stack'
 
 export type RootStackParamList = {
-  LOGIN: {
-    onLogin: () => void
-    other: string
-  }
+  LOGIN: undefined
   REGISTER: undefined
   HOME: {
     onLogout: () => void
@@ -16,14 +13,13 @@ export type RootStackParamList = {
 
 const RootStack = createStackNavigator<RootStackParamList>()
 
-const AuthStack = ({ onLogin }: { onLogin: () => void }) => {
+const AuthStack = () => {
   return (
     <RootStack.Navigator>
       <RootStack.Screen
         options={{ headerShown: false }}
         name={Screen.LOGIN}
         component={LoginScreen}
-        initialParams={{ onLogin, other: 'meeee' }}
       />
       <RootStack.Screen
         options={{ headerShown: false }}

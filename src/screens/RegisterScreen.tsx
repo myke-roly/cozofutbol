@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {
   Button,
   Image,
@@ -12,6 +12,7 @@ import { TextField, Text } from '../components/common'
 import { Screen } from '../navigation/enum/screen'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import { RootStackParamList } from '../navigation/AuthStack'
+import firebase from '../helpers/firebase'
 
 type RegisterScreenProps = NativeStackScreenProps<
   RootStackParamList,
@@ -19,6 +20,17 @@ type RegisterScreenProps = NativeStackScreenProps<
 >
 
 const RegisterScreen = ({ navigation }: RegisterScreenProps) => {
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+
+  const handleCreateAccount = async () => {
+    try {
+      const data = await firebase.createAccount(email, password)
+      console.log(data)
+    } catch (error) {
+      console.error(error)
+    }
+  }
   return (
     <KeyboardAvoidingView
       style={styles.container}
@@ -43,17 +55,17 @@ const RegisterScreen = ({ navigation }: RegisterScreenProps) => {
           </Text>
           <View style={{ flex: 1 }} />
           <TextField
-            value=""
+            value={email}
             type="email-address"
             placeholder="Ingresa tu email"
             label="Email"
-            onChange={() => {}}
+            onChange={setEmail}
           />
           <TextField
-            value=""
-            placeholder="Ingresa un contraseña"
+            value={password}
+            placeholder="Ingresa tu contraseña"
             label="Contraseña"
-            onChange={() => {}}
+            onChange={setPassword}
           />
           <TextField
             value=""
@@ -61,7 +73,7 @@ const RegisterScreen = ({ navigation }: RegisterScreenProps) => {
             label="Confirmar contraseña"
             onChange={() => {}}
           />
-          <Button title="Crear cuenta" onPress={() => {}} />
+          <Button title="Crear cuenta" onPress={handleCreateAccount} />
           <Button
             title="Iniciar Sesión"
             onPress={() => navigation.navigate(Screen.LOGIN)}

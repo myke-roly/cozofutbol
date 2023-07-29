@@ -1,10 +1,8 @@
 import React, { FC, useState } from 'react'
 import {
-  ActivityIndicator,
   Button,
   Image,
   KeyboardAvoidingView,
-  Modal,
   Platform,
   ScrollView,
   StyleSheet,
@@ -14,29 +12,30 @@ import { TextField, Text } from '../components/common'
 import { Screen } from '../navigation/enum/screen'
 import { RootStackParamList } from '../navigation/AuthStack'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
-
-const LoadingScreen = ({ isLoading }: { isLoading: boolean }) => {
-  return (
-    <Modal transparent={true} visible={isLoading}>
-      <View
-        style={{
-          flex: 1,
-          justifyContent: 'center',
-          alignItems: 'center',
-          backgroundColor: '#26262666',
-        }}>
-        <ActivityIndicator size="large" color="#FFFFFF" />
-      </View>
-    </Modal>
-  )
-}
+import firebase from '../helpers/firebase'
+import { LoadingScreen } from './misc'
 
 type LoginScreenProps = NativeStackScreenProps<RootStackParamList, Screen.LOGIN>
 
-const LoginScreen: FC<LoginScreenProps> = ({ navigation, route }) => {
-  const { onLogin } = route.params
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
+const LoginScreen: FC<LoginScreenProps> = ({ navigation }) => {
+  const [email, setEmail] = useState('mykeroly@gmail.com')
+  const [password, setPassword] = useState('555111444')
+  const [error, setError] = useState('')
+
+  const handleLogin = async () => {
+    if (!email || !password) {
+      setError('Complete los campos')
+
+      return
+    }
+
+    try {
+      const data = await firebase.login(email, password)
+      console.log(data)
+    } catch (err) {
+      setError('Los datos ingresados son incorrectos')
+    }
+  }
 
   return (
     <KeyboardAvoidingView
@@ -62,22 +61,21 @@ const LoginScreen: FC<LoginScreenProps> = ({ navigation, route }) => {
             bienvenidos!.
           </Text>
           <View style={{ flex: 1 }} />
-          <Text>{email}</Text>
-          <Text>{password}</Text>
+          <Text>{!!error && error}</Text>
           <TextField
             value={email}
             type="email-address"
             placeholder="Ingresa tu email"
             label="Email"
-            onChange={text => setEmail(text)}
+            onChange={setEmail}
           />
           <TextField
             value={password}
             placeholder="Ingresa un contraseña"
             label="Contraseña"
-            onChange={text => setPassword(text)}
+            onChange={setPassword}
           />
-          <Button title="Iniciar Sesión" onPress={onLogin} />
+          <Button title="Iniciar Sesión" onPress={handleLogin} />
           <Button
             title="Ya tengo una cuenta!"
             onPress={() => navigation.navigate(Screen.REGISTER)}
