@@ -19,12 +19,35 @@ const Splash = () => {
     }, 1000)
   }, [])
 
-  async function handleLogout() {
-    try {
-      await firebase.logout()
-    } catch (error) {
-      console.error(error)
+  function getLanguageFromDevice() {
+    const language = 'es'
+    return language
+  }
+
+  const implementI18n = () => {
+    const en = {
+      hello: 'Hello',
+      world: 'World',
     }
+
+    const es = {
+      hello: 'Hola',
+      world: 'Mundo',
+    }
+
+    const i18n = {
+      en,
+      es,
+    }
+
+    const lang = 'es'
+
+    console.log(i18n[lang].hello)
+  }
+
+  async function handleLogout() {
+    await firebase.logout()
+    setToken(null)
   }
 
   const theme = useTheme()

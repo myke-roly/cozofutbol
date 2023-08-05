@@ -29,6 +29,7 @@ const RegisterScreen = ({ navigation }: RegisterScreenProps) => {
       console.log(data)
     } catch (error) {
       console.error(error)
+      // manage error
     }
   }
   return (
