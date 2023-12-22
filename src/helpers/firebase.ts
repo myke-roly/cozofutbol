@@ -24,4 +24,5 @@ export default {
   createAccount,
   login,
   logout,
+  user: auth().currentUser,
 }
