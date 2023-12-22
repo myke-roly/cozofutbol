@@ -9,14 +9,14 @@ import {
   View,
 } from 'react-native'
 import { TextField, Text } from '../components/common'
-import { Screen } from '../navigation/enum/screen'
+import { AuthScreen } from '../navigation/enum/screen'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import { RootStackParamList } from '../navigation/AuthStack'
 import firebase from '../helpers/firebase'
 
 type RegisterScreenProps = NativeStackScreenProps<
   RootStackParamList,
-  Screen.REGISTER
+  AuthScreen.REGISTER
 >
 
 const RegisterScreen = ({ navigation }: RegisterScreenProps) => {
@@ -40,9 +40,9 @@ const RegisterScreen = ({ navigation }: RegisterScreenProps) => {
         <ScrollView contentContainerStyle={styles.contentContainer}>
           <Image
             source={{
-              uri: 'https://images.vexels.com/media/users/3/234531/isolated/lists/086485ed507e0da80d18343375019a4b-hombre-jugar-al-futbol-recorte.png',
-              width: 150,
-              height: 150,
+              uri: 'https://images.vexels.com/media/users/3/146850/isolated/preview/b314541f49ce483dd4c47d0142a47f77-icono-de-pelota-de-ftbol-cl-sico.png',
+              width: 100,
+              height: 100,
               cache: 'only-if-cached',
             }}
             style={{ alignSelf: 'center', marginVertical: 24 }}
@@ -54,7 +54,6 @@ const RegisterScreen = ({ navigation }: RegisterScreenProps) => {
             Únete a la comunidad futbolera y juega sin límites de nivel con la
             app de Cozo Futbol.
           </Text>
-          <View style={{ flex: 1 }} />
           <TextField
             value={email}
             type="email-address"
@@ -74,10 +73,10 @@ const RegisterScreen = ({ navigation }: RegisterScreenProps) => {
             label="Confirmar contraseña"
             onChange={() => {}}
           />
-          <Button title="Crear cuenta" onPress={handleCreateAccount} />
+          <Button title="Registrarme" onPress={handleCreateAccount} />
           <Button
-            title="Iniciar Sesión"
-            onPress={() => navigation.navigate(Screen.LOGIN)}
+            title="¿Ya tienes cuenta? Inicia sesión"
+            onPress={() => navigation.navigate(AuthScreen.LOGIN)}
           />
         </ScrollView>
       </View>

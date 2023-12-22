@@ -5,6 +5,7 @@ import {
   createBottomTabNavigator,
 } from '@react-navigation/bottom-tabs'
 import { Text } from '../components/common'
+import firebase from '../helpers/firebase'
 
 export type MainTabParamList = {
   HOME: {
@@ -13,15 +14,13 @@ export type MainTabParamList = {
   SETTINGS: undefined
 }
 
-type HomeScreenProps = BottomTabScreenProps<MainTabParamList, 'HOME'>
+// type HomeScreenProps = BottomTabScreenProps<MainTabParamList, 'HOME'>
 
-const HomeScreen = ({ route }: HomeScreenProps) => {
-  const { onLogout } = route.params
-
+const HomeScreen = () => {
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
       <Text>Home!</Text>
-      <Button title="Cerrar sesión" onPress={onLogout} />
+      <Button title="Cerrar sesión" onPress={firebase.logout} />
     </View>
   )
 }
@@ -37,14 +36,10 @@ const SettingsScreen = ({}: SettingsScreenProps) => {
 
 const Tab = createBottomTabNavigator<MainTabParamList>()
 
-const MainTabs = ({ onLogout }: { onLogout: () => void }) => {
+const MainTabs = () => {
   return (
     <Tab.Navigator initialRouteName={'HOME'}>
-      <Tab.Screen
-        name="HOME"
-        initialParams={{ onLogout }}
-        component={HomeScreen}
-      />
+      <Tab.Screen name="HOME" component={HomeScreen} />
       <Tab.Screen name="SETTINGS" component={SettingsScreen} />
     </Tab.Navigator>
   )

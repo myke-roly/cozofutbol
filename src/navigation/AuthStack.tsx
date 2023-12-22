@@ -1,14 +1,14 @@
 import React from 'react'
 import { LoginScreen, RegisterScreen } from '../screens'
-import { Screen } from './enum/screen'
+import { AuthScreen } from './enum/screen'
 import { createStackNavigator } from '@react-navigation/stack'
+import MainTabs from './MainTabs'
 
 export type RootStackParamList = {
   LOGIN: undefined
   REGISTER: undefined
-  HOME: {
-    onLogout: () => void
-  }
+  HOME: undefined
+  MAIN: undefined
 }
 
 const RootStack = createStackNavigator<RootStackParamList>()
@@ -18,14 +18,15 @@ const AuthStack = () => {
     <RootStack.Navigator>
       <RootStack.Screen
         options={{ headerShown: false }}
-        name={Screen.LOGIN}
+        name={AuthScreen.LOGIN}
         component={LoginScreen}
       />
       <RootStack.Screen
         options={{ headerShown: false }}
-        name={Screen.REGISTER}
+        name={AuthScreen.REGISTER}
         component={RegisterScreen}
       />
+      <RootStack.Screen name="MAIN" component={MainTabs} />
     </RootStack.Navigator>
   )
 }
