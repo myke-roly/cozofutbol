@@ -15,17 +15,9 @@ const RootStack = createStackNavigator<RootStackParamList>()
 
 const AuthStack = () => {
   return (
-    <RootStack.Navigator>
-      <RootStack.Screen
-        options={{ headerShown: false }}
-        name={AuthScreen.LOGIN}
-        component={LoginScreen}
-      />
-      <RootStack.Screen
-        options={{ headerShown: false }}
-        name={AuthScreen.REGISTER}
-        component={RegisterScreen}
-      />
+    <RootStack.Navigator screenOptions={{ headerShown: false }}>
+      <RootStack.Screen name={AuthScreen.LOGIN} component={LoginScreen} />
+      <RootStack.Screen name={AuthScreen.REGISTER} component={RegisterScreen} />
       <RootStack.Screen name="MAIN" component={MainTabs} />
     </RootStack.Navigator>
   )

@@ -1,46 +1,25 @@
 import React from 'react'
-import { Button, View } from 'react-native'
-import {
-  BottomTabScreenProps,
-  createBottomTabNavigator,
-} from '@react-navigation/bottom-tabs'
-import { Text } from '../components/common'
-import firebase from '../helpers/firebase'
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+import { HomeScreen, SettingsScreen } from '../screens'
+import { MainScreen } from './enum/screen'
 
 export type MainTabParamList = {
-  HOME: {
-    onLogout: () => void
-  }
+  HOME: undefined
   SETTINGS: undefined
-}
-
-// type HomeScreenProps = BottomTabScreenProps<MainTabParamList, 'HOME'>
-
-const HomeScreen = () => {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Home!</Text>
-      <Button title="Cerrar sesión" onPress={firebase.logout} />
-    </View>
-  )
-}
-
-type SettingsScreenProps = BottomTabScreenProps<MainTabParamList, 'SETTINGS'>
-const SettingsScreen = ({}: SettingsScreenProps) => {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Settings!</Text>
-    </View>
-  )
+  MAIN: undefined
 }
 
 const Tab = createBottomTabNavigator<MainTabParamList>()
 
 const MainTabs = () => {
   return (
-    <Tab.Navigator initialRouteName={'HOME'}>
-      <Tab.Screen name="HOME" component={HomeScreen} />
-      <Tab.Screen name="SETTINGS" component={SettingsScreen} />
+    <Tab.Navigator
+      initialRouteName={MainScreen.HOME}
+      screenOptions={{
+        headerShown: false,
+      }}>
+      <Tab.Screen name={MainScreen.HOME} component={HomeScreen} />
+      <Tab.Screen name={MainScreen.SETTINGS} component={SettingsScreen} />
     </Tab.Navigator>
   )
 }

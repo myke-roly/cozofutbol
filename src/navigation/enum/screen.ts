@@ -9,7 +9,7 @@ export enum AuthScreen {
   MAIN = 'MAIN',
 }
 
-export enum HomeScreen {
+export enum MainScreen {
   HOME = 'HOME',
   SETTINGS = 'SETTINGS',
 }
