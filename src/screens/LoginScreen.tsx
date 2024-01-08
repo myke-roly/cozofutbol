@@ -1,6 +1,5 @@
 import React, { FC, useState } from 'react'
 import {
-  Button,
   Image,
   KeyboardAvoidingView,
   Platform,
@@ -8,7 +7,7 @@ import {
   StyleSheet,
   View,
 } from 'react-native'
-import { TextField, Text } from '../components/common'
+import { TextField, Text, Button } from '../components/common'
 import { AuthScreen } from '../navigation/enum/screen'
 import { RootStackParamList } from '../navigation/AuthStack'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
@@ -87,9 +86,10 @@ const LoginScreen: FC<LoginScreenProps> = ({ navigation }) => {
         />
         <Text level="2">{!!error && error}</Text>
 
-        <Button title="Iniciar Sesión" onPress={handleLogin} />
+        <Button title="Iniciar sesión" onPress={handleLogin} />
         <Button
           title="¿No tienes cuenta? Regístrate"
+          variant="text"
           onPress={() => navigation.navigate(AuthScreen.REGISTER)}
         />
       </ScrollView>
