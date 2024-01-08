@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import {
-  Button,
   Image,
   KeyboardAvoidingView,
   Platform,
@@ -14,6 +13,7 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import { RootStackParamList } from '../navigation/AuthStack'
 import firebase from '../helpers/firebase'
 import { LoadingScreen } from './misc'
+import { Button } from '../components'
 
 type RegisterScreenProps = NativeStackScreenProps<
   RootStackParamList,
@@ -107,6 +107,7 @@ const RegisterScreen = ({ navigation }: RegisterScreenProps) => {
         <Button title="Registrarme" onPress={handleCreateAccount} />
         <Button
           title="¿Ya tienes cuenta? Inicia sesión"
+          variant="text"
           onPress={() => navigation.navigate(AuthScreen.LOGIN)}
         />
       </ScrollView>
