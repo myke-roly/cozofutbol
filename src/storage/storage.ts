@@ -1,6 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { StorageItemType } from './enum'
-import { useMutation } from '@tanstack/react-query'
 
 export const setStorageItem = async (
   storageItem: StorageItemType,
@@ -18,7 +17,7 @@ export const getStorageItem = async (
 ): Promise<string | null> => {
   try {
     const data = await AsyncStorage.getItem(storageItem)
-    return !!data ? data : null
+    return data ? data : null
   } catch (error) {
     console.error(error)
     return null
