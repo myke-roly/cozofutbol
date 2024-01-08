@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { memo } from 'react'
 import {
   Text as RNText,
   TextProps as RNTextProps,
@@ -11,7 +11,14 @@ type TextProps = {
   centered?: boolean
 } & RNTextProps
 
-const Text = ({ level = '4', strong, centered, children }: TextProps) => {
+const Text = ({
+  level = '4',
+  strong,
+  centered,
+  children,
+  style,
+  ...props
+}: TextProps) => {
   const fontSizeStyle = {
     '1': styles.level1,
     '2': styles.level2,
@@ -29,7 +36,11 @@ const Text = ({ level = '4', strong, centered, children }: TextProps) => {
     ...centeredStyle,
   }
 
-  return <RNText style={finalStyles}>{children}</RNText>
+  return (
+    <RNText {...props} style={[style, finalStyles]}>
+      {children}
+    </RNText>
+  )
 }
 
 const styles = StyleSheet.create({
@@ -56,4 +67,4 @@ const styles = StyleSheet.create({
   },
 })
 
-export default Text
+export default memo(Text)
