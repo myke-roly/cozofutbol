@@ -7,7 +7,7 @@ import {
   ViewProps,
   Animated,
 } from 'react-native'
-import { Color } from '../../../constants'
+import { Color } from '../../constants'
 
 type ButtonProps = {
   title: string

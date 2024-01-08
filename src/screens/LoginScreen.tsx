@@ -1,18 +1,17 @@
-import React, { FC, useState } from 'react'
+import React, { FC, useLayoutEffect, useState } from 'react'
+import { Image, ScrollView, StyleSheet, View } from 'react-native'
 import {
-  Image,
-  KeyboardAvoidingView,
-  Platform,
-  ScrollView,
-  StyleSheet,
-  View,
-} from 'react-native'
-import { TextField, Text, Button } from '../components/common'
+  TextField,
+  Text,
+  KeyboardAvoidingComponent,
+} from '../components/common'
 import { AuthScreen } from '../navigation/enum/screen'
 import { RootStackParamList } from '../navigation/AuthStack'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import firebase from '../helpers/firebase'
 import { LoadingScreen } from './misc'
+import { Button } from '../components/ui'
+import { TextInput } from 'react-native-gesture-handler'
 
 type LoginScreenProps = NativeStackScreenProps<
   RootStackParamList,
@@ -20,10 +19,15 @@ type LoginScreenProps = NativeStackScreenProps<
 >
 
 const LoginScreen: FC<LoginScreenProps> = ({ navigation }) => {
+  const inputRef = React.useRef<TextInput>(null)
   const [email, setEmail] = useState('mykeroly@gmail.com')
   const [password, setPassword] = useState('555111444')
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
+
+  useLayoutEffect(() => {
+    inputRef.current?.focus()
+  }, [])
 
   const handleLogin = async () => {
     if (!email || !password) {
@@ -48,10 +52,10 @@ const LoginScreen: FC<LoginScreenProps> = ({ navigation }) => {
   }
 
   return (
-    <KeyboardAvoidingView
-      style={styles.container}
-      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
-      <ScrollView contentContainerStyle={styles.contentContainer}>
+    <KeyboardAvoidingComponent>
+      <ScrollView
+        keyboardShouldPersistTaps="handled"
+        contentContainerStyle={styles.contentContainer}>
         <LoadingScreen loading={loading} />
         <View>
           <Image
@@ -67,7 +71,7 @@ const LoginScreen: FC<LoginScreenProps> = ({ navigation }) => {
           <Text level="3" centered>
             ¿Listo para jugar? Inicia sesión en Cozo Futbol y descubre todo lo
             que tenemos para ofrecerte. No importa tu nivel, ¡aquí todos son
-            bienvenidos!.
+            bienvenidos!
           </Text>
         </View>
 
@@ -77,14 +81,19 @@ const LoginScreen: FC<LoginScreenProps> = ({ navigation }) => {
           placeholder="Ingresa tu email"
           label="Email"
           onChange={setEmail}
+          ref={inputRef}
         />
         <TextField
           value={password}
           placeholder="Ingresa un contraseña"
           label="Contraseña"
           onChange={setPassword}
+          ref={inputRef}
         />
-        <Text level="2">{!!error && error}</Text>
+
+        <Text style={{ color: 'red', paddingVertical: 8 }} level="2">
+          {!!error && error}
+        </Text>
 
         <Button title="Iniciar sesión" onPress={handleLogin} />
         <Button
@@ -93,14 +102,11 @@ const LoginScreen: FC<LoginScreenProps> = ({ navigation }) => {
           onPress={() => navigation.navigate(AuthScreen.REGISTER)}
         />
       </ScrollView>
-    </KeyboardAvoidingView>
+    </KeyboardAvoidingComponent>
   )
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
   imageHeader: {
     alignSelf: 'center',
     marginVertical: 24,
@@ -108,7 +114,6 @@ const styles = StyleSheet.create({
     height: 100,
   },
   contentContainer: {
-    flex: 1,
     justifyContent: 'center',
     alignContent: 'center',
     paddingHorizontal: 24,
