@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { memo } from 'react'
 import { ActivityIndicator, Modal, StyleSheet, View } from 'react-native'
 
 const LoadingScreen = ({ loading }: { loading: boolean }) => {
+  console.log('render LoadingScreen')
   return (
     <Modal transparent={true} visible={loading}>
       <View style={styles.container}>
@@ -20,4 +21,4 @@ const styles = StyleSheet.create({
   },
 })
 
-export default LoadingScreen
+export default memo(LoadingScreen)

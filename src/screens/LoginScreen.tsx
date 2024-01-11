@@ -1,4 +1,10 @@
-import React, { FC, useLayoutEffect, useState } from 'react'
+import React, {
+  FC,
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useState,
+} from 'react'
 import { Image, ScrollView, StyleSheet, View } from 'react-native'
 import {
   TextField,
@@ -26,10 +32,12 @@ const LoginScreen: FC<LoginScreenProps> = ({ navigation }) => {
   const [loading, setLoading] = useState(false)
 
   useLayoutEffect(() => {
-    inputRef.current?.focus()
-  }, [])
+    if (inputRef.current) {
+      inputRef.current.focus()
+    }
+  }, [inputRef.current?.focus])
 
-  const handleLogin = async () => {
+  const handleLogin = useCallback(async () => {
     if (!email || !password) {
       setError('Ingresá tu email y contraseña')
 
@@ -49,7 +57,11 @@ const LoginScreen: FC<LoginScreenProps> = ({ navigation }) => {
       .finally(() => {
         setLoading(false)
       })
-  }
+  }, [email, password, navigation])
+
+  const handleSingUp = useCallback(() => {
+    navigation.navigate(AuthScreen.REGISTER)
+  }, [navigation])
 
   return (
     <KeyboardAvoidingComponent>
@@ -95,11 +107,14 @@ const LoginScreen: FC<LoginScreenProps> = ({ navigation }) => {
           {!!error && error}
         </Text>
 
-        <Button title="Iniciar sesión" onPress={handleLogin} />
+        <Button
+          title={loading ? 'loading...' : 'Iniciar sesión'}
+          onPress={handleLogin}
+        />
         <Button
           title="¿No tienes cuenta? Regístrate"
           variant="text"
-          onPress={() => navigation.navigate(AuthScreen.REGISTER)}
+          onPress={handleSingUp}
         />
       </ScrollView>
     </KeyboardAvoidingComponent>

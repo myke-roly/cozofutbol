@@ -28,6 +28,7 @@ const TextField = forwardRef<TextInput, TextFieldProps>(
     }: TextFieldProps,
     ref,
   ) => {
+    console.log('render TextField')
     return (
       <View>
         <Text>{label}</Text>
