@@ -6,4 +6,11 @@ module.exports = {
     'react-hooks/rules-of-hooks': 'error',
     semi: 0,
   },
+  overrides: [
+    {
+      env: {
+        jest: true,
+      },
+    }
+  ]
 }
