@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ContentWithButtonsLayout should render correctly 1`] = `
+<View
+  style={
+    {
+      "backgroundColor": "#fafafa",
+      "flex": 1,
+    }
+  }
+/>
+`;

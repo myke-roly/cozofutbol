@@ -37,10 +37,12 @@ const ContentWithButtonsLayout = ({
           {children}
         </ScrollView>
       )}
-      <View style={[styles.buttons, isfocued && styles.topShadow]}>
-        {!!primaryButton && renderPrimaryButton({ ...primaryButton })}
-        {!!secondaryButton && renderSecondaryButton({ ...secondaryButton })}
-      </View>
+      {!!primaryButton && (
+        <View style={[styles.buttons, isfocued && styles.topShadow]}>
+          {renderPrimaryButton({ ...primaryButton })}
+          {!!secondaryButton && renderSecondaryButton({ ...secondaryButton })}
+        </View>
+      )}
     </View>
   )
 }
