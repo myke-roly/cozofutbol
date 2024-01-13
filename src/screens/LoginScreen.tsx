@@ -1,5 +1,5 @@
 import React, { FC, useCallback, useLayoutEffect, useState } from 'react'
-import { Image, ScrollView, StyleSheet, View } from 'react-native'
+import { Image, StyleSheet, View } from 'react-native'
 import {
   TextField,
   Text,
@@ -10,8 +10,8 @@ import { RootStackParamList } from '../navigation/AuthStack'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import firebase from '../helpers/firebase'
 import { LoadingScreen } from './misc'
-import { Button } from '../components/ui'
 import { TextInput } from 'react-native-gesture-handler'
+import { ContentWithButtonsLayout } from '../components/layout'
 
 type LoginScreenProps = NativeStackScreenProps<
   RootStackParamList,
@@ -58,10 +58,16 @@ const LoginScreen: FC<LoginScreenProps> = ({ navigation }) => {
   }, [navigation])
 
   return (
-    <KeyboardAvoidingComponent>
-      <ScrollView
-        keyboardShouldPersistTaps="handled"
-        contentContainerStyle={styles.contentContainer}>
+    <ContentWithButtonsLayout
+      primaryButton={{
+        title: 'Iniciar sesión',
+        onPress: handleLogin,
+      }}
+      secondaryButton={{
+        title: '¿No tienes cuenta? Regístrate',
+        onPress: handleSingUp,
+      }}>
+      <KeyboardAvoidingComponent>
         <LoadingScreen loading={loading} />
         <View>
           <Image
@@ -98,18 +104,8 @@ const LoginScreen: FC<LoginScreenProps> = ({ navigation }) => {
         <Text style={{ color: 'red', paddingVertical: 8 }} level="2">
           {!!error && error}
         </Text>
-
-        <Button
-          title={loading ? 'loading...' : 'Iniciar sesión'}
-          onPress={handleLogin}
-        />
-        <Button
-          title="¿No tienes cuenta? Regístrate"
-          variant="text"
-          onPress={handleSingUp}
-        />
-      </ScrollView>
-    </KeyboardAvoidingComponent>
+      </KeyboardAvoidingComponent>
+    </ContentWithButtonsLayout>
   )
 }
 
@@ -119,12 +115,6 @@ const styles = StyleSheet.create({
     marginVertical: 24,
     width: 100,
     height: 100,
-  },
-  contentContainer: {
-    justifyContent: 'center',
-    alignContent: 'center',
-    paddingHorizontal: 24,
-    paddingVertical: 40,
   },
 })
 

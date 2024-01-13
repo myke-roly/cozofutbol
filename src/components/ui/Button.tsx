@@ -9,9 +9,7 @@ import {
 } from 'react-native'
 import { Color } from '../../constants'
 
-type ButtonProps = {
-  title: string
-  onPress: () => void
+export type ButtonProps = {
   style?: ViewProps['style']
   variant?: 'primary' | 'outline' | 'text'
 } & RNButtonProps

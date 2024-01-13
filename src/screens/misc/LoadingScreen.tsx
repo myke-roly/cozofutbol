@@ -1,5 +1,6 @@
 import React, { memo } from 'react'
 import { ActivityIndicator, Modal, StyleSheet, View } from 'react-native'
+import { Color } from '../../constants'
 
 const LoadingScreen = ({ loading }: { loading: boolean }) => {
   console.log('render LoadingScreen')
@@ -17,7 +18,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#26262666',
+    backgroundColor: Color.GRAY,
   },
 })
 
