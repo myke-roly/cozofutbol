@@ -1,0 +1,52 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TextField should render correctly 1`] = `
+<TextInput
+  autoCapitalize="none"
+  keyboardType="default"
+  onChangeText={[MockFunction]}
+  placeholder="placeholder-test"
+  placeholderTextColor="#acacac"
+  style={
+    [
+      {
+        "borderWidth": 0,
+        "color": "#232323",
+        "fontSize": 16,
+        "fontWeight": "500",
+        "paddingHorizontal": 16,
+        "paddingVertical": 12,
+      },
+      undefined,
+    ]
+  }
+  value="value-test"
+/>
+`;
+
+exports[`TextField should render correctly with optionals props 1`] = `
+<TextInput
+  autoCapitalize="none"
+  keyboardType="number-pad"
+  onChangeText={[MockFunction]}
+  placeholder="placeholder-test"
+  placeholderTextColor="#acacac"
+  style={
+    [
+      {
+        "borderWidth": 0,
+        "color": "#232323",
+        "fontSize": 16,
+        "fontWeight": "500",
+        "paddingHorizontal": 16,
+        "paddingVertical": 12,
+      },
+      {
+        "borderBottomColor": "#acacac",
+        "borderBottomWidth": 1,
+      },
+    ]
+  }
+  value="value-test"
+/>
+`;

@@ -1,10 +1,4 @@
-import React, {
-  FC,
-  useCallback,
-  useEffect,
-  useLayoutEffect,
-  useState,
-} from 'react'
+import React, { FC, useCallback, useLayoutEffect, useState } from 'react'
 import { Image, ScrollView, StyleSheet, View } from 'react-native'
 import {
   TextField,
@@ -27,7 +21,7 @@ type LoginScreenProps = NativeStackScreenProps<
 const LoginScreen: FC<LoginScreenProps> = ({ navigation }) => {
   const inputRef = React.useRef<TextInput>(null)
   const [email, setEmail] = useState('mykeroly@gmail.com')
-  const [password, setPassword] = useState('555111444')
+  const [password, setPassword] = useState('')
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
 
@@ -91,14 +85,12 @@ const LoginScreen: FC<LoginScreenProps> = ({ navigation }) => {
           value={email}
           type="email-address"
           placeholder="Ingresa tu email"
-          label="Email"
           onChange={setEmail}
           ref={inputRef}
         />
         <TextField
           value={password}
           placeholder="Ingresa un contraseña"
-          label="Contraseña"
           onChange={setPassword}
           ref={inputRef}
         />
