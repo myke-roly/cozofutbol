@@ -7,7 +7,7 @@ const LoadingScreen = ({ loading }: { loading: boolean }) => {
   return (
     <Modal transparent={true} visible={loading}>
       <View style={styles.container}>
-        <ActivityIndicator size="large" color="#FFFFFF" />
+        <ActivityIndicator size="large" color={Color.BLACK} />
       </View>
     </Modal>
   )
@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: Color.GRAY,
+    backgroundColor: Color.GRAY + '80',
   },
 })
 
