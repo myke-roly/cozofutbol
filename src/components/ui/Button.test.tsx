@@ -1,12 +1,36 @@
 import renderer from 'react-test-renderer'
 import Button from './Button'
 
+import { fireEvent, render } from '@testing-library/react-native'
+import { Animated } from 'react-native'
+
+jest.spyOn(Animated, 'timing').mockImplementation(() => ({
+  start: jest.fn(),
+  stop: jest.fn(),
+  reset: jest.fn(),
+}))
+
 describe('Button', () => {
   it('renders correctly', () => {
-    const tree = renderer
-      .create(<Button title="test-title" onPress={jest.fn()} />)
-      .toJSON()
-    expect(tree).toMatchSnapshot()
+    const { toJSON, getByTestId } = render(
+      <Button title="test-title" onPress={jest.fn()} />,
+    )
+
+    fireEvent(getByTestId('btn-presable-view'), 'onPressIn')
+    expect(Animated.timing).toHaveBeenCalledWith(expect.any(Object), {
+      toValue: 0.98,
+      duration: 100,
+      useNativeDriver: true,
+    })
+
+    fireEvent(getByTestId('btn-presable-view'), 'onPressOut')
+    expect(Animated.timing).toHaveBeenCalledWith(expect.any(Object), {
+      toValue: 1,
+      duration: 100,
+      useNativeDriver: true,
+    })
+
+    expect(toJSON()).toMatchSnapshot()
   })
 
   it('renders correctly with disabled', () => {

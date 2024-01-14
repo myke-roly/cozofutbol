@@ -35,7 +35,11 @@ describe('KeyboardAvoidingComponent', () => {
       </KeyboardAvoidingComponent>,
     )
 
-    fireEvent(getByTestId('keyboard-avoiding-view'), 'layout', nativeEventMock)
+    fireEvent(
+      getByTestId('keyboard-avoiding-view'),
+      'onLayout',
+      nativeEventMock,
+    )
     expect(toJSON()).toMatchSnapshot()
   })
 })

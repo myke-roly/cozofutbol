@@ -49,10 +49,6 @@ const Button = ({
   )
 
   const handleOnPressIn = useCallback(() => {
-    if (disabled) {
-      return
-    }
-
     Animated.timing(animatedOpacity, {
       toValue: 0.98,
       duration: 100,
@@ -61,10 +57,6 @@ const Button = ({
   }, [animatedOpacity, disabled])
 
   const handleOnPressOut = useCallback(() => {
-    if (disabled) {
-      return
-    }
-
     Animated.timing(animatedOpacity, {
       toValue: 1,
       duration: 100,
