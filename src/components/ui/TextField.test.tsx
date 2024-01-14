@@ -24,7 +24,7 @@ describe('TextField', () => {
           onChange={fn}
           placeholder="placeholder-test"
           divider={true}
-          type="number-pad"
+          keyboardType="number-pad"
         />,
       )
       .toJSON()

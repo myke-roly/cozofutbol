@@ -1,23 +1,19 @@
 import React, { forwardRef, memo } from 'react'
-import { KeyboardTypeOptions, StyleSheet, TextInput } from 'react-native'
+import { StyleSheet, TextInput, TextInputProps } from 'react-native'
 import { Color, FontSize } from '../../constants'
 
-type TextFieldProps = {
-  value: string
+export type TextFieldProps = {
   onChange: (value: string) => void
-  placeholder: string
-  type?: KeyboardTypeOptions
   divider?: boolean
-}
+} & Omit<TextInputProps, 'onChange'>
 
 const TextField = forwardRef<TextInput, TextFieldProps>(
   (
     {
-      placeholder,
       divider,
       onChange,
-      value = '',
-      type = 'default',
+      keyboardType = 'default',
+      autoCapitalize = 'none',
       ...props
     }: TextFieldProps,
     ref,
@@ -30,12 +26,10 @@ const TextField = forwardRef<TextInput, TextFieldProps>(
       <TextInput
         ref={ref}
         style={[styles.input, divider && styles.divider]}
-        placeholder={placeholder}
         placeholderTextColor={Color.GRAY}
-        keyboardType={type}
-        value={value}
+        keyboardType={keyboardType}
         onChangeText={onChange}
-        autoCapitalize="none"
+        autoCapitalize={autoCapitalize}
         {...props}
       />
     )
