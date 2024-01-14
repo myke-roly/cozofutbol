@@ -1,0 +1,83 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`KeyboardAvoidingComponent Should render correctly sets height onLayout 1`] = `
+<View
+  onLayout={[Function]}
+  style={
+    {
+      "flex": 1,
+    }
+  }
+  testID="keyboard-avoiding-view"
+>
+  <View
+    onLayout={[Function]}
+    style={
+      [
+        {
+          "flex": 1,
+        },
+        {
+          "paddingBottom": 0,
+        },
+      ]
+    }
+  >
+    <View>
+      <Text
+        style={
+          [
+            undefined,
+            {
+              "fontSize": 16,
+            },
+          ]
+        }
+      >
+        Children custom keyboard avoiding
+      </Text>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`KeyboardAvoidingComponent should render correctly 1`] = `
+<View
+  onLayout={[Function]}
+  style={
+    {
+      "flex": 1,
+    }
+  }
+  testID="keyboard-avoiding-view"
+>
+  <View
+    onLayout={[Function]}
+    style={
+      [
+        {
+          "flex": 1,
+        },
+        {
+          "paddingBottom": 0,
+        },
+      ]
+    }
+  >
+    <View>
+      <Text
+        style={
+          [
+            undefined,
+            {
+              "fontSize": 16,
+            },
+          ]
+        }
+      >
+        Children custom keyboard avoiding
+      </Text>
+    </View>
+  </View>
+</View>
+`;
