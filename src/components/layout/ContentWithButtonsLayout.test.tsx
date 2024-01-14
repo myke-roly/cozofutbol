@@ -1,4 +1,5 @@
 import renderer from 'react-test-renderer'
+import { fireEvent, render } from '@testing-library/react-native'
 import { ContentWithButtonsLayout } from './'
 import { View } from 'react-native'
 import { Text } from '../common'
@@ -98,5 +99,27 @@ describe('ContentWithButtonsLayout', () => {
       )
       .toJSON()
     expect(tree).toMatchSnapshot()
+  })
+
+  it('Should render correctly onLayout sets the buttons height', () => {
+    const mockNativeEvent = {
+      nativeEvent: {
+        layout: {
+          height: 100,
+        },
+      },
+    }
+
+    const { getByTestId, toJSON } = render(
+      <ContentWithButtonsLayout
+        primaryButton={{
+          title: 'primary-title-test',
+          onPress: fn,
+        }}
+      />,
+    )
+
+    fireEvent(getByTestId('buttons-view'), 'layout', mockNativeEvent)
+    expect(toJSON()).toMatchSnapshot()
   })
 })

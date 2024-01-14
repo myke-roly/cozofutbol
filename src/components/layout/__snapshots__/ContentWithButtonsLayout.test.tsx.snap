@@ -9,7 +9,26 @@ exports[`ContentWithButtonsLayout Should render correctly if isfocued is true 1`
     }
   }
 >
+  <RCTScrollView
+    contentContainerStyle={
+      [
+        {
+          "alignSelf": "center",
+          "flex": 1,
+          "marginVertical": 24,
+          "width": "90%",
+        },
+        {
+          "marginBottom": 0,
+        },
+      ]
+    }
+    keyboardShouldPersistTaps="handled"
+  >
+    <View />
+  </RCTScrollView>
   <View
+    onLayout={[Function]}
     style={
       [
         {
@@ -30,6 +49,127 @@ exports[`ContentWithButtonsLayout Should render correctly if isfocued is true 1`
         },
       ]
     }
+    testID="buttons-view"
+  >
+    <View
+      accessibilityState={
+        {
+          "busy": undefined,
+          "checked": undefined,
+          "disabled": undefined,
+          "expanded": undefined,
+          "selected": undefined,
+        }
+      }
+      accessibilityValue={
+        {
+          "max": undefined,
+          "min": undefined,
+          "now": undefined,
+          "text": undefined,
+        }
+      }
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      testID="btn-presable-view"
+    >
+      <View
+        collapsable={false}
+        style={
+          {
+            "alignItems": "center",
+            "backgroundColor": "#232323",
+            "borderRadius": 8,
+            "borderWidth": 1,
+            "elevation": 5,
+            "justifyContent": "center",
+            "opacity": 1,
+            "paddingHorizontal": 8,
+            "paddingVertical": 16,
+            "shadowColor": "#232323",
+            "shadowOffset": {
+              "height": 2,
+              "width": 2,
+            },
+            "shadowOpacity": 1,
+            "transform": [
+              {
+                "scale": 1,
+              },
+            ],
+            "width": "100%",
+          }
+        }
+      >
+        <Text
+          style={
+            {
+              "color": "#fafafa",
+              "fontSize": 16,
+            }
+          }
+        >
+          primary-title-test
+        </Text>
+      </View>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`ContentWithButtonsLayout Should render correctly onLayout sets the buttons height 1`] = `
+<View
+  style={
+    {
+      "backgroundColor": "#fafafa",
+      "flex": 1,
+    }
+  }
+>
+  <RCTScrollView
+    contentContainerStyle={
+      [
+        {
+          "alignSelf": "center",
+          "flex": 1,
+          "marginVertical": 24,
+          "width": "90%",
+        },
+        {
+          "marginBottom": 100,
+        },
+      ]
+    }
+    keyboardShouldPersistTaps="handled"
+  >
+    <View />
+  </RCTScrollView>
+  <View
+    onLayout={[Function]}
+    style={
+      [
+        {
+          "backgroundColor": "#fafafa",
+          "bottom": 0,
+          "paddingHorizontal": 24,
+          "paddingVertical": 16,
+          "position": "absolute",
+          "width": "100%",
+        },
+        false,
+      ]
+    }
+    testID="buttons-view"
   >
     <View
       accessibilityState={
@@ -116,7 +256,26 @@ exports[`ContentWithButtonsLayout Should render correctly with secondary button 
     }
   }
 >
+  <RCTScrollView
+    contentContainerStyle={
+      [
+        {
+          "alignSelf": "center",
+          "flex": 1,
+          "marginVertical": 24,
+          "width": "90%",
+        },
+        {
+          "marginBottom": 0,
+        },
+      ]
+    }
+    keyboardShouldPersistTaps="handled"
+  >
+    <View />
+  </RCTScrollView>
   <View
+    onLayout={[Function]}
     style={
       [
         {
@@ -130,6 +289,7 @@ exports[`ContentWithButtonsLayout Should render correctly with secondary button 
         false,
       ]
     }
+    testID="buttons-view"
   >
     <View
       accessibilityState={
@@ -216,7 +376,26 @@ exports[`ContentWithButtonsLayout should render correctly 1`] = `
       "flex": 1,
     }
   }
-/>
+>
+  <RCTScrollView
+    contentContainerStyle={
+      [
+        {
+          "alignSelf": "center",
+          "flex": 1,
+          "marginVertical": 24,
+          "width": "90%",
+        },
+        {
+          "marginBottom": 0,
+        },
+      ]
+    }
+    keyboardShouldPersistTaps="handled"
+  >
+    <View />
+  </RCTScrollView>
+</View>
 `;
 
 exports[`ContentWithButtonsLayout should render correctly with children 1`] = `
@@ -230,13 +409,17 @@ exports[`ContentWithButtonsLayout should render correctly with children 1`] = `
 >
   <RCTScrollView
     contentContainerStyle={
-      {
-        "alignSelf": "center",
-        "flex": 1,
-        "height": 933.8,
-        "marginVertical": 24,
-        "width": "90%",
-      }
+      [
+        {
+          "alignSelf": "center",
+          "flex": 1,
+          "marginVertical": 24,
+          "width": "90%",
+        },
+        {
+          "marginBottom": 0,
+        },
+      ]
     }
     keyboardShouldPersistTaps="handled"
   >
@@ -269,7 +452,26 @@ exports[`ContentWithButtonsLayout should render correctly with primary and secon
     }
   }
 >
+  <RCTScrollView
+    contentContainerStyle={
+      [
+        {
+          "alignSelf": "center",
+          "flex": 1,
+          "marginVertical": 24,
+          "width": "90%",
+        },
+        {
+          "marginBottom": 0,
+        },
+      ]
+    }
+    keyboardShouldPersistTaps="handled"
+  >
+    <View />
+  </RCTScrollView>
   <View
+    onLayout={[Function]}
     style={
       [
         {
@@ -283,6 +485,7 @@ exports[`ContentWithButtonsLayout should render correctly with primary and secon
         false,
       ]
     }
+    testID="buttons-view"
   >
     <View
       accessibilityState={
@@ -441,7 +644,26 @@ exports[`ContentWithButtonsLayout should render correctly with primary button 1`
     }
   }
 >
+  <RCTScrollView
+    contentContainerStyle={
+      [
+        {
+          "alignSelf": "center",
+          "flex": 1,
+          "marginVertical": 24,
+          "width": "90%",
+        },
+        {
+          "marginBottom": 0,
+        },
+      ]
+    }
+    keyboardShouldPersistTaps="handled"
+  >
+    <View />
+  </RCTScrollView>
   <View
+    onLayout={[Function]}
     style={
       [
         {
@@ -455,6 +677,7 @@ exports[`ContentWithButtonsLayout should render correctly with primary button 1`
         false,
       ]
     }
+    testID="buttons-view"
   >
     <View
       accessibilityState={
@@ -540,5 +763,24 @@ exports[`ContentWithButtonsLayout should render correctly with secondary button 
       "flex": 1,
     }
   }
-/>
+>
+  <RCTScrollView
+    contentContainerStyle={
+      [
+        {
+          "alignSelf": "center",
+          "flex": 1,
+          "marginVertical": 24,
+          "width": "90%",
+        },
+        {
+          "marginBottom": 0,
+        },
+      ]
+    }
+    keyboardShouldPersistTaps="handled"
+  >
+    <View />
+  </RCTScrollView>
+</View>
 `;

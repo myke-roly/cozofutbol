@@ -1,10 +1,8 @@
 import React, { PropsWithChildren, memo } from 'react'
-import { StyleSheet, View, ScrollView, Dimensions } from 'react-native'
+import { StyleSheet, View, ScrollView } from 'react-native'
 import { Button } from '../ui'
 import { ButtonProps } from '../ui/Button'
 import { Color } from '../../constants'
-
-const heightWindow = Dimensions.get('window').height
 
 export type ContentWithButtonsLayoutProps = PropsWithChildren<{
   primaryButton?: ButtonProps
@@ -26,19 +24,25 @@ const ContentWithButtonsLayout = ({
   secondaryButton,
   isfocued = false,
 }: ContentWithButtonsLayoutProps) => {
-  console.log('render ContentWithButtonsLayout', heightWindow)
+  const [buttonsHeight, setButtonsHeight] = React.useState(0)
 
   return (
     <View style={styles.container}>
-      {children && (
-        <ScrollView
-          contentContainerStyle={styles.content}
-          keyboardShouldPersistTaps="handled">
-          {children}
-        </ScrollView>
-      )}
+      <ScrollView
+        contentContainerStyle={[
+          styles.content,
+          { marginBottom: buttonsHeight },
+        ]}
+        keyboardShouldPersistTaps="handled">
+        {children}
+      </ScrollView>
       {!!primaryButton && (
-        <View style={[styles.buttons, isfocued && styles.topShadow]}>
+        <View
+          testID="buttons-view"
+          style={[styles.buttons, isfocued && styles.topShadow]}
+          onLayout={({ nativeEvent: { layout } }) =>
+            setButtonsHeight(layout.height)
+          }>
           {renderPrimaryButton({ ...primaryButton })}
           {!!secondaryButton && renderSecondaryButton({ ...secondaryButton })}
         </View>
@@ -55,7 +59,6 @@ const styles = StyleSheet.create({
   content: {
     flex: 1,
     width: '90%',
-    height: heightWindow * 0.7,
     alignSelf: 'center',
     marginVertical: 24,
   },
