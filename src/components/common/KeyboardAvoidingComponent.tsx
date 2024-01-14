@@ -13,7 +13,7 @@ const windowHeight = Dimensions.get('window').height
 // TODO: CREATE DINAMIC SCROLL VIEW TO SET HEIGHT ON KEYBOARD OPEN AND CLOSE
 
 const KeyboardAvoidingComponent = ({
-  keyboardVerticalOffset = 0,
+  keyboardVerticalOffset,
   children,
   ...props
 }: KeyboardAvoidingViewProps) => {

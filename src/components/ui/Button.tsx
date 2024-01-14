@@ -76,7 +76,7 @@ const Button = ({
     [animatedOpacity],
   )
 
-  console.log('Render button with title: ', title)
+  console.log('🚀 ~ Render button with title:', title)
 
   return (
     <Pressable
